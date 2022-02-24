@@ -9,7 +9,8 @@ void main()
 {
   vec2 uv = gl_FragCoord.xy / iRes.xy;
   uv.y = 1.-uv.y;
-  gl_FragColor = vec4(uv,0.,1.);
+  //DEBUG
+  //gl_FragColor = vec4(uv,0.,1.);
   gl_FragColor = texture2D(iChannel1, uv);
 }
 `
@@ -39,10 +40,7 @@ function setup() {
   sh = createShader(vs,fs);
   noStroke();
   pg.noStroke();
-  //pg.image(img,-DIM[0]/2,-DIM[1]/2,width,height)
   pg.image(img,0,0,width,height)
-
-//	noLoop()
 }
 
 function draw() {
@@ -50,7 +48,6 @@ function draw() {
     sh.setUniform('iRes', DIM);
     sh.setUniform('iChannel1', pg);
     sh.setUniform('iFrame', frameCount);
-    //rect(-DIM[0]/2,-DIM[1]/2,width,height)
     rect(0,0,width,height)
     pg.image(c.get(),0,0,width,height)
 }
